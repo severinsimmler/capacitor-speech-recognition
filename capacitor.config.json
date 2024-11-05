@@ -1,0 +1,10 @@
+{
+  "appId": "com.example.app",
+  "appName": "speech-to-text",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}
