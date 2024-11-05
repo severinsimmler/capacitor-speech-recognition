@@ -1,4 +1,4 @@
-With this minimal app you should be able to reproduce weird behavior of transcribing audio to text with the `@capacitor-community/speech-recognition` plugin. Tested mostly on Android, but I have seen this on iOS as well.
+With this minimal app you should be able to reproduce weird behavior of transcribing audio to text with the `@capacitor-community/speech-recognition` plugin. **This happens only on Android and is not reproducible on iOS.**
 
 Sometimes the device does not start listening even though the click counter is incremented (i.e. I assume the click event has been triggered). This is reproducible with both my actual app and this minimal example. It never happens when clicking "start" for the first time. I have the feeling it mostly happens every second time.
 
