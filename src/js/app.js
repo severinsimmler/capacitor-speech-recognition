@@ -20,6 +20,8 @@ window.customElements.define(
             <p>
               <button class="button" id="stop">Stop (clicked <span id="stop-click">0</span> times)</button>
             </p>
+            <p>Listening before start: <span id="is-listening-before"></span></p>
+            <p>Listening after start: <span id="is-listening-after"></span></p>
             <p id="text"></p>
           </main>
         </div>
@@ -29,9 +31,15 @@ window.customElements.define(
     connectedCallback() {
       const self = this;
 
-      const p = self.shadowRoot.querySelector("#text");
+      const text = self.shadowRoot.querySelector("#text");
       const startClick = self.shadowRoot.querySelector("#start-click");
       const stopClick = self.shadowRoot.querySelector("#stop-click");
+      const isListeningBefore = self.shadowRoot.querySelector(
+        "#is-listening-before"
+      );
+      const isListeningAfter = self.shadowRoot.querySelector(
+        "#is-listening-after"
+      );
 
       let startClickCount = 0;
       let stopClickCount = 0;
@@ -41,6 +49,10 @@ window.customElements.define(
         .addEventListener("click", async function (_e) {
           startClickCount++;
           startClick.innerHTML = startClickCount;
+
+          isListeningBefore.innerHTML = `${
+            (await SpeechRecognition.isListening()).listening
+          } (start button counter: ${startClickCount})`;
 
           await SpeechRecognition.requestPermissions();
 
@@ -52,8 +64,12 @@ window.customElements.define(
           });
 
           SpeechRecognition.addListener("partialResults", (data) => {
-            p.innerHTML = JSON.stringify(data);
+            text.innerHTML = JSON.stringify(data);
           });
+
+          isListeningAfter.innerHTML = `${
+            (await SpeechRecognition.isListening()).listening
+          } (start button counter: ${startClickCount})`;
         });
 
       self.shadowRoot

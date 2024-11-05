@@ -2,6 +2,7 @@ With this minimal app you should be able to reproduce weird behavior of transcri
 
 Sometimes the device does not start listening even though the click counter is incremented (i.e. I assume the click event has been triggered). This is reproducible with both my actual app and this minimal example. It never happens when clicking "start" for the first time. I have the feeling it mostly happens every second time.
 
+Note that `SpeechRecognition.isListening()` returns true although the device is _not_ listening. Neither text is transcribed nor the microphone icon top right indicates that it's currently used.
 
 ### Steps to reproduce
 
